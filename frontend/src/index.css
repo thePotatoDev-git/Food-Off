@@ -1,0 +1,303 @@
+* {
+    box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+    font-family: "Karla", sans-serif;
+    position: relative;
+    margin: 0;
+    font-size: 16px;
+    background-image: linear-gradient(to top, rgba(243, 243, 243, 0.85), rgba(243, 243, 243, 0.85)), url(/images/food_background.jpg);
+    background-size: contain;
+}
+section {
+    padding: 20px;
+}
+.hidden {
+    display: none;
+}
+a {
+    text-decoration: none;
+}
+a:visited {
+    color: inherit;
+}
+/****************************************************************************
+    HEADER / NAVBAR
+*****************************************************************************/
+.navbar {
+    height: 65px;
+    background: linear-gradient(90deg, rgb(241, 149, 56) 1.18%, rgb(230, 138, 47) 100%);
+    color: rgb(44, 60, 83);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+.navbar--title {
+    display: flex;
+    font-size: 1.15rem;
+    align-items: center;
+}
+.navbar--user {
+    font-size: 0.75rem;
+    font-weight: 500;
+    align-self: center;
+}
+.navbar--item a {
+    text-decoration: none;
+    color: white;
+}
+.navbar--menu {
+    position: absolute;
+    width: 250px;
+    height: 100vh;
+    right: 0;
+    top: 65px;
+    background: rgb(35, 52, 75);
+    margin: 0;
+    padding: 10px;
+}
+.navbar--greeting {
+    color: white;
+}
+.navbar--item {
+    list-style: none;
+    color: white;
+    padding: 15px;
+}
+/****************************************************************************
+    LOGIN/SIGN UP
+*****************************************************************************/
+.login {
+    border: 1px solid black;
+    margin: 50px;
+    height: 70vh;
+}
+.login--select {
+    display: flex;
+    /* border-bottom: 1px solid rgba(173, 169, 169, 0.699); */
+    height: 65px;
+    width: 100%;
+    color: rgb(182, 179, 179);
+    flex-direction: row;
+    justify-content: space-around;
+}
+.login--select > h3 {
+    transition: 0.3s;
+}
+.login--select > h3:hover {
+    color: black;
+    cursor: pointer;
+}
+
+.login-field {
+    display: flex;
+    flex-direction: column;
+}
+.login-field h2 {
+    align-self: center;
+}
+.login-field input {
+    margin: 15px 0;
+    padding: 8px;
+}
+.submit {
+    background: rgb(44, 60, 83);
+    color: white;
+    border-radius: 7px;
+}
+.login-field p {
+    margin: 4px 0;
+}
+.selected {
+    color: black;
+    border-bottom: 2px solid black;;
+}
+.submit:active {
+    background: linear-gradient(90deg, rgb(241, 149, 56) 1.18%, rgb(230, 138, 47) 100%);
+}
+.link-style {
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+/****************************************************************************
+    BUDGET MENU
+*****************************************************************************/
+.greeting {
+    margin: 0 10px;
+}
+.main {
+    border: 1px solid black;
+    margin: 35px;
+    min-height: 65vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.buttons {
+    display: flex;
+    margin: 50px 0;
+}
+.lrg,
+.buttons button {
+    margin: 12px;
+    background:rgb(44, 60, 83);
+    color: white;
+    width: 65px;
+    height: 40px;
+}
+.lrg {
+    width: 200px;
+}
+button:active {
+    background: linear-gradient(90deg, rgb(241, 149, 56) 1.18%, rgb(230, 138, 47) 100%);
+}
+/****************************************************************************
+    FOOD/OFF!
+*****************************************************************************/
+.food-off,
+.winner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.option {
+    border: 1px solid black;
+    height: 100px;
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+}
+/****************************************************************************
+    WINNER
+*****************************************************************************/
+.winner {
+    height: auto;
+}
+.winner--img {
+    border-radius: 10px;
+}
+.winner--menu,
+.winner-location {
+    padding: 15px;
+}
+/****************************************************************************
+    EATERY ENTRIES
+*****************************************************************************/
+.entries {
+    min-height: 65vh;
+    padding: 1px 0px;
+}
+.entries--heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+}
+.entries--heading-buttons {
+    width: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.entries--search {
+    padding: 10px;
+}
+.entries--search input{
+    width: 80%;
+    height: 30px;
+    padding: 0 15px;
+}
+.x-mark {
+    padding: 0 8px;
+    font-size: 1.5rem;
+}
+.entries--table {
+    padding: 0;
+    width: 100%;
+    height: 79.3vh;
+    overflow: auto;
+}
+.entries--entry {
+    display: flex;
+    padding: 10px 10px;
+    align-items: center;
+    border-bottom: 1px solid gray;
+}
+.entry-img {
+    width: 75px;
+    margin-right: 15px;
+}
+.entry-img img {
+    width: 75px;
+}
+.entry-info h4,
+.entry-info p {
+    margin: 5px 0;
+}
+.entry-info span {
+    font-size: 0.8rem;
+}
+.entry-info p {
+    font-size: 0.8rem;
+}
+/* .add-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgb(35, 52, 75);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 65px;
+    right: 20px;
+} */
+/****************************************************************************
+    ENTRY FORM
+*****************************************************************************/
+.entry--form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.form-field {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 0;
+}
+.form-field label {
+    padding: 5px 0;
+}
+.form-field input {
+    padding: 8px;
+}
+/****************************************************************************
+    FOOTER
+*****************************************************************************/
+footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(90deg, rgb(44, 60, 83) 1.18%, rgb(35, 52, 75) 100%);
+    color: white;
+    /* position: absolute;
+    bottom: 0;
+    right: 0;
+    left: 0; */
+}
+.footer a {
+    color: rgb(180, 175, 175);
+}
