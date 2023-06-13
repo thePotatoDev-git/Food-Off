@@ -79,31 +79,32 @@ const LoginScreen = () => {
         //     </Form>
         // </FormContainer>
 
-        
-        <section className="login">
-            <div className="login--select">
-                <h3 className="selected">Log In</h3>
-                <h3><Link to="/register">Sign Up</Link></h3>
-            </div>
-            <div className="login--info">
-                <form className="login-field" onSubmit={ submitHandler }>
-                    <h2>Log In</h2>
-                    <input type="email" 
-                            placeholder="Email"
-                            value={email}
-                            onChange={ (e) => setEmail(e.target.value) }
-                    />
-                    <input type="password"
-                            placeholder="Password"
-                            value={password}
-                            onChange={ (e) => setPassword(e.target.value) }
-                    />
-                    <input type="submit" className="submit" value="Log In"/>
-                    <p><a href="#">Forgot password?</a></p>
-                    <p>Don't have an account? <span className="link-style"><Link to="/register">Sign up.</Link></span></p>
-                </form>
-            </div>
-    </section>
+        <FormContainer>
+            <section className="login">
+                <div className="login--select">
+                    <h3 className="selected">Log In</h3>
+                    <h3><Link to="/register">Sign Up</Link></h3>
+                </div>
+                <div className="login--info">
+                    <form className="login-field" onSubmit={ submitHandler }>
+                        <h2>Log In</h2>
+                        <input type="email" 
+                                placeholder="Email"
+                                value={email}
+                                onChange={ (e) => setEmail(e.target.value) }
+                        />
+                        <input type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={ (e) => setPassword(e.target.value) }
+                        />
+                        <input type="submit" className="submit" value="Log In"/>
+                        <p><a href="#">Forgot password?</a></p>
+                        <p>Don't have an account? <span className="link-style"><Link to="/register">Sign up.</Link></span></p>
+                    </form>
+                </div>
+            </section>
+        </FormContainer>
     )
 }
 

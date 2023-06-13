@@ -40,9 +40,6 @@ export default function MainScreen() {
 
     return (
         <>
-            <Header
-                userName={userName}
-            />
             <section className="greeting">
                 <h2>{`${timeOfDay}`}</h2>
             </section>

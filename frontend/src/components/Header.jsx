@@ -1,61 +1,79 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons';
-import { faBurger } from '@fortawesome/free-solid-svg-icons';
-import { Link, useNavigate } from 'react-router-dom';
+import { faCaretDown, faBurger } from '@fortawesome/free-solid-svg-icons';
+import { Navbar, Nav, Container, NavDropdown, Badge } from 'react-bootstrap';
+import { FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { LinkContainer } from 'react-router-bootstrap';
 import { useLogoutMutation } from '../slices/usersApiSlice';
 import { logout } from '../slices/authSlice';
 
-export default function Header(props) {
-    let user = props.userName || <span><Link to="/login">Log in</Link></span>;
-//  Hamburger menu toggle
-    const [hamburgerState, setHamburgerState] = React.useState("navbar--menu hidden");
-    function toggleMenu() {
-        setHamburgerState(hamburgerState === "navbar--menu hidden" ? "navbar--menu" : "navbar--menu hidden");
+const Header = () => {
+  const { userInfo } = useSelector((state) => state.auth);
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [logoutApiCall] = useLogoutMutation();
+
+  const logoutHandler = async () => {
+    try {
+      await logoutApiCall().unwrap();
+      dispatch(logout());
+      navigate('/login');
+    } catch (err) {
+      console.log(err);
     }
-//  Return userName or 'Log in' in Header component
-    let loggedIn = () => {
-        if (user === props.userName) {
-            return ( // Return userName and hamburger menu function
-                <div className="navbar--user" >
-                    <h4 onClick={toggleMenu}>{user} <FontAwesomeIcon icon={faBurger} size="2xl" /></h4>
-                </div>
-            )
-        } else {
-            return ( // Return 'Log in' and toggleForm function
-                <div className="navbar--user" >
-                    <h4>{user}</h4>
-                </div>
-            )
-        }
-    }
+  }
 
-    const { userInfo } = useSelector((state) => state.auth);
+  //  Hamburger menu toggle
+  const [hamburgerState, setHamburgerState] = React.useState("navbar--menu hidden");
+  function toggleMenu() {
+      setHamburgerState(hamburgerState === "navbar--menu hidden" ? "navbar--menu" : "navbar--menu hidden");
+  }
 
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-    const [logoutApiCall] = useLogoutMutation();
-
-    const logoutHandler = async () => {
-        try {
-        await logoutApiCall().unwrap();
-        dispatch(logout());
-        nav('/');
-        } catch (err) {
-        console.log(err);
-        }
-    }
-    
-    return (
-        <header>
+  return (
+    <header>
             <nav className="navbar">
                 <div className="navbar--title">
-                    <h2><a href="/main.html">Food/Off</a></h2>
+                    <LinkContainer to="/main">
+                        <h2><a href="/main">Food/Off</a></h2>
+                    </LinkContainer>
                 </div>
-                {loggedIn()}
-                <ul className={hamburgerState}>
+
+                {userInfo ? (
+                    <>
+                    <div className="navbar--user">
+                        <h4 onClick={toggleMenu}>{userInfo.name} <FontAwesomeIcon icon={faBurger} size="2xl" /></h4>
+                    </div>
+                    <ul className={hamburgerState}>
+                        <li className="navbar--item">
+                            <LinkContainer to="/profile">
+                               <span className="link-cursor" onClick={toggleMenu}>Profile</span>
+                            </LinkContainer>
+                        </li>
+                        <li className="navbar--item">
+                            <LinkContainer to="/lists">
+                                <span className="link-cursor" onClick={toggleMenu}>Food lists</span>
+                            </LinkContainer>
+                        </li>
+                        <li className="navbar--item">
+                            <span className="link-cursor" onClick={ logoutHandler }>Logout</span>
+                        </li>
+                    </ul>
+                    </>
+                ) : (
+                    <>
+                    <div className="navbar--user">
+                        <LinkContainer to="/login">
+                            <h4 className="link-cursor">Login</h4>
+                        </LinkContainer>
+                    </div>
+                    </>
+                )}
+
+                {/* <ul>
                     <li className="navbar--item">
                         <a href="#">Profile</a>
                     </li>
@@ -65,8 +83,10 @@ export default function Header(props) {
                     <li className="navbar--item">
                         <span onClick={ logoutHandler }>Logout</span>
                     </li>
-                </ul>
+                </ul> */}
             </nav>
         </header>
-    );
-}
+  );
+};
+
+export default Header;

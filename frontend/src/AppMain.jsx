@@ -5,7 +5,7 @@ import Header from './components/Header';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const App = () => {
+const AppMain = () => {
   return (
     <>
       <h1>AppMain.jsx</h1>
@@ -18,4 +18,4 @@ const App = () => {
   )
 }
 
-export default App
+export default AppMain
