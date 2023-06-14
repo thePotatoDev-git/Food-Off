@@ -1,6 +1,6 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCaretDown, faBurger } from '@fortawesome/free-solid-svg-icons';
+import { faCaretDown, faBurger, faX } from '@fortawesome/free-solid-svg-icons';
 import { Navbar, Nav, Container, NavDropdown, Badge } from 'react-bootstrap';
 import { FaSignInAlt, FaSignOutAlt } from 'react-icons/fa';
 import { useSelector, useDispatch } from 'react-redux';
@@ -22,6 +22,7 @@ const Header = () => {
       await logoutApiCall().unwrap();
       dispatch(logout());
       navigate('/login');
+      toggleMenu();
     } catch (err) {
       console.log(err);
     }
@@ -29,6 +30,7 @@ const Header = () => {
 
   //  Hamburger menu toggle
   const [hamburgerState, setHamburgerState] = React.useState("navbar--menu hidden");
+
   function toggleMenu() {
       setHamburgerState(hamburgerState === "navbar--menu hidden" ? "navbar--menu" : "navbar--menu hidden");
   }
@@ -45,9 +47,12 @@ const Header = () => {
                 {userInfo ? (
                     <>
                     <div className="navbar--user">
-                        <h4 onClick={toggleMenu}>{userInfo.name} <FontAwesomeIcon icon={faBurger} size="2xl" /></h4>
+                        <h4 onClick={toggleMenu}>{userInfo.username} <FontAwesomeIcon icon={faBurger} size="2xl" /></h4>
                     </div>
                     <ul className={hamburgerState}>
+                        <div className="x" onClick={toggleMenu}>
+                            <FontAwesomeIcon icon={faX}  style={{color: "#ffffff",}}/>
+                        </div>
                         <li className="navbar--item">
                             <LinkContainer to="/profile">
                                <span className="link-cursor" onClick={toggleMenu}>Profile</span>
