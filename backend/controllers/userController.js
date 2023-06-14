@@ -14,7 +14,9 @@ const authUser = asyncHandler(async (req, res) => {
         generateToken(res, user._id);
         res.status(201).json({
             _id: user._id,
-            name: user.name,
+            username: user.username,
+            firstName: user.firstName,
+            lastName: user.lastName,
             email: user.email,
         });
     } else {
@@ -27,17 +29,25 @@ const authUser = asyncHandler(async (req, res) => {
 // route    POST /api/users/
 // @access  Public
 const registerUser = asyncHandler(async (req, res) => {
-    const { name, email, password } = req.body;
+    const { username, firstName, lastName, email, password } = req.body;
     
     const userExists = await User.findOne({email});
+    const usernameExists = await User.findOne({username});
 
     if (userExists) {
         res.status(400);
         throw new Error('User already exists');
     }
 
+    if (usernameExists) {
+        res.status(400);
+        throw new Error('Username already taken');
+    }
+
     const user = await User.create({
-        name,
+        username,
+        firstName,
+        lastName,
         email,
         password,
     });
@@ -46,7 +56,9 @@ const registerUser = asyncHandler(async (req, res) => {
         generateToken(res, user._id);
         res.status(201).json({
             _id: user._id,
-            name: user.name,
+            username: user.username,
+            firstName: req.user.firstName,
+            lastName: req.user.lastName,
             email: user.email,
         });
     } else {
@@ -73,7 +85,9 @@ const logoutUser = asyncHandler(async (req, res) => {
 const getMainPage = asyncHandler(async (req, res) => {
     const user = {
         _id: req.user._id,
-        name: req.user.name,
+        username: req.user.username,
+        firstName: req.user.firstName,
+        lastName: req.user.lastName,
         email: req.user.email,
     };
 
@@ -86,7 +100,9 @@ const getMainPage = asyncHandler(async (req, res) => {
 const getUserProfile = asyncHandler(async (req, res) => {
     const user = {
         _id: req.user._id,
-        name: req.user.name,
+        username: req.user.username,
+        firstName: req.user.firstName,
+        lastName: req.user.lastName,
         email: req.user.email,
     };
 
@@ -100,7 +116,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
     const user = await User.findById(req.user._id);
 
     if (user) {
-        user.name = req.body.name || user.name;
+        user.username = req.body.username || user.username;
         user.email = req.body.email || user.email;
 
         if (req.body.password) {
@@ -111,7 +127,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 
         res.status(200).json({
             _id: updatedUser._id,
-            name: updatedUser.name,
+            username: updatedUser.username,
             email: updatedUser.email,
         });
     } else {

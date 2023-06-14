@@ -11,7 +11,9 @@ import { useUpdateUserMutation } from '../slices/usersApiSlice';
 import React from 'react'
 
 const ProfileScreen = () => {
-    const [name, setName] = useState('');
+    const [name, setUsername] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -24,9 +26,11 @@ const ProfileScreen = () => {
     const [updateProfile, { isLoading }] = useUpdateUserMutation();
 
     useEffect(() => {
-        setName(userInfo.name);
+        setUsername(userInfo.username);
+        setFirstName(userInfo.firstName);
+        setLastName(userInfo.lastName);
         setEmail(userInfo.email);
-    }, [userInfo.setName, userInfo.setEmail]);
+    }, [userInfo.setUsername, userInfo.setFirstName, userInfo.setLastName, userInfo.setEmail]);
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -36,7 +40,9 @@ const ProfileScreen = () => {
             try {
                 const res = await updateProfile({
                     _id: userInfo._id,
-                    name,
+                    username,
+                    firstName,
+                    lastName,
                     email,
                     password,
                 }).unwrap();

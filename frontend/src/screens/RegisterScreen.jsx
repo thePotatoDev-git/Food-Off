@@ -11,7 +11,9 @@ import { setCredentials } from '../slices/authSlice';
 import React from 'react'
 
 const RegisterScreen = () => {
-    const [name, setName] = useState('');
+    const [username, setUsername] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
@@ -35,7 +37,7 @@ const RegisterScreen = () => {
             toast.error('Passwords do not match');
         } else {
             try {
-                const res = await register({ name, email, password }).unwrap(); // Unwraps the promise
+                const res = await register({ username, firstName, lastName, email, password }).unwrap(); // Unwraps the promise
                 dispatch(setCredentials({...res})); 
                 navigate('/');
             } catch (err) {
@@ -117,9 +119,19 @@ const RegisterScreen = () => {
                     <form className="login-field" onSubmit={ submitHandler }>
                         <h2>Sign Up</h2>
                         <input type="text" 
-                                placeholder="Name"
-                                value={name}
-                                onChange={ (e) => setName(e.target.value) }
+                                placeholder="Username"
+                                value={username}
+                                onChange={ (e) => setUsername(e.target.value) }
+                        />
+                        <input type="text" 
+                                placeholder="First name (optional)"
+                                value={firstName}
+                                onChange={ (e) => setFirstName(e.target.value) }
+                        />
+                        <input type="text" 
+                                placeholder="Last name (optional)"
+                                value={lastName}
+                                onChange={ (e) => setLastName(e.target.value) }
                         />
                         <input type="email" 
                                 placeholder="Email" 
