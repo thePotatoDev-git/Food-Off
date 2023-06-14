@@ -107,27 +107,44 @@ const RegisterScreen = () => {
         //     </Form>
         // </FormContainer>
 
-        
-        <section className="login">
-            <div className="login--select">
-                <h3> <Link to="/login">Log In</Link> </h3>
-                <h3 className="selected">Sign Up</h3>
-            </div>
-            <div className="login--info">
-                <form className="login-field" onSubmit={ submitHandler }>
-                    <h2>Sign Up</h2>
-                    <input type="email" 
-                            placeholder="Email" 
-                            value={email} 
-                            onChange={ (e) => setEmail(e.target.value) }
-                    />
-                    <input type="password" name="password" placeholder="Password"/>
-                    <input type="password" name="password" placeholder="Confirm password"/>
-                    <input type="submit" className="submit" value="Sign Up"/>
-                    <p>Already have an account? <span className="link-style"><Link to="/login">Log in.</Link></span></p>
-                </form>
-            </div>
-        </section>
+        <FormContainer>
+            <section className="login">
+                <div className="login--select">
+                    <h3> <Link to="/login">Log In</Link> </h3>
+                    <h3 className="selected">Sign Up</h3>
+                </div>
+                <div className="login--info">
+                    <form className="login-field" onSubmit={ submitHandler }>
+                        <h2>Sign Up</h2>
+                        <input type="text" 
+                                placeholder="Name"
+                                value={name}
+                                onChange={ (e) => setName(e.target.value) }
+                        />
+                        <input type="email" 
+                                placeholder="Email" 
+                                value={email} 
+                                onChange={ (e) => setEmail(e.target.value) }
+                        />
+                        <input type="password" 
+                                placeholder="Password"
+                                value={password}
+                                onChange={ (e) => setPassword(e.target.value) }
+                        />
+                        <input type="password" 
+                                placeholder="Confirm Password"
+                                value={confirmPassword}
+                                onChange={ (e) => setConfirmPassword(e.target.value) }
+                        />
+                        <input type="submit" className="submit" value="Sign Up"/>
+
+                        {isLoading && <Loader />}
+
+                        <p>Already have an account? <span className="link-style"><Link to="/login">Log in.</Link></span></p>
+                    </form>
+                </div>
+            </section>
+        </FormContainer>
       
     )
 }

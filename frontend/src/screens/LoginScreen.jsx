@@ -99,6 +99,9 @@ const LoginScreen = () => {
                                 onChange={ (e) => setPassword(e.target.value) }
                         />
                         <input type="submit" className="submit" value="Log In"/>
+
+                        { isLoading && <Loader /> }
+
                         <p><a href="#">Forgot password?</a></p>
                         <p>Don't have an account? <span className="link-style"><Link to="/register">Sign up.</Link></span></p>
                     </form>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Header from '../components/Header.jsx';
 import ChooseBudget from '../components/ChooseBudget.jsx';
 import FoodOff from '../components/FoodOff.jsx';
@@ -6,7 +7,7 @@ import Winner from '../components/Winner.jsx';
 import Footer from '../components/Footer.jsx';
 
 export default function MainScreen() {
-    let userName = 'User';
+    const { userInfo } = useSelector((state) => state.auth);
 
 // Time of day and meal messages
     const date = new Date();
@@ -14,13 +15,13 @@ export default function MainScreen() {
  
     let timeOfDay
      if (hours >= 4 && hours < 12) {
-         timeOfDay = `Good morning, ${userName}! What's for breakfast?`
+         timeOfDay = `Good morning, ${userInfo.name}! What's for breakfast?`
      } else if (hours >= 12 && hours < 17) {
-         timeOfDay = `Good afternoon, ${userName}! What's for lunch?`
+         timeOfDay = `Good afternoon, ${userInfo.name}! What's for lunch?`
      } else if (hours >= 17 && hours < 20) {
-         timeOfDay = `Good evening, ${userName}! What's for dinner?`
+         timeOfDay = `Good evening, ${userInfo.name}! What's for dinner?`
      } else {
-         timeOfDay = `Late night, ${userName}? What are we snackin' on?`
+         timeOfDay = `Late night, ${userInfo.name}? What are we snackin' on?`
      }
 
 // Toggle budget, food-off, and winner components
@@ -44,7 +45,6 @@ export default function MainScreen() {
                 <h2>{`${timeOfDay}`}</h2>
             </section>
             {page}
-            <Footer />
         </>
     )
 }
