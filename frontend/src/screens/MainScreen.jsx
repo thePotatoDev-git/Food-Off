@@ -17,7 +17,7 @@ export default function MainScreen() {
      if (hours >= 4 && hours < 12) {
          timeOfDay = `Good morning, ${userInfo.firstName || userInfo.username}! What's for breakfast?`
      } else if (hours >= 12 && hours < 17) {
-         timeOfDay = `Good afternoon, ${userInfo.firstName}! What's for lunch?`
+         timeOfDay = `Good afternoon, ${userInfo.firstName || userInfo.username}! What's for lunch?`
      } else if (hours >= 17 && hours < 20) {
          timeOfDay = `Good evening, ${userInfo.firstName || userInfo.username}! What's for dinner?`
      } else {

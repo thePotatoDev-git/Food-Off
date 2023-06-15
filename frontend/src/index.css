@@ -80,6 +80,23 @@ a:visited {
     padding: 15px;
 }
 /****************************************************************************
+    HERO
+*****************************************************************************/
+.hero--header {
+    font-size: 2.5rem;
+}
+.hero--img {
+    margin: 30px 0;
+}
+.hero--buttons {
+    display: flex;
+    justify-content: center;
+    margin: 50px 0;
+}
+.hero--desc {
+    line-height: 25px;
+}
+/****************************************************************************
     LOGIN/SIGN UP
 *****************************************************************************/
 .login {
@@ -154,12 +171,16 @@ a:visited {
     margin: 50px 0;
 }
 .lrg,
+.med,
 .buttons button {
     margin: 12px;
     background:rgb(44, 60, 83);
     color: white;
     width: 65px;
     height: 40px;
+}
+.med {
+    width: 100px;
 }
 .lrg {
     width: 200px;

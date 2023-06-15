@@ -39,8 +39,8 @@ const Header = () => {
     <header>
             <nav className="navbar">
                 <div className="navbar--title">
-                    <LinkContainer to="/main">
-                        <h2><a href="/main">Food/Off</a></h2>
+                    <LinkContainer to="/">
+                        <h2><a href="/">Food/Off</a></h2>
                     </LinkContainer>
                 </div>
 
