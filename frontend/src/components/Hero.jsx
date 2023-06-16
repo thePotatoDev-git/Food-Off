@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCircleLeft, faCircleRight } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 import { Container, Card, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
@@ -23,6 +25,10 @@ const Hero = () => {
                 <p className="hero--desc">
                     Having trouble deciding where to eat? Food/Off can help you decide!
                 </p>
+                <div className="arrows">
+                    <FontAwesomeIcon icon={faCircleLeft} size="2xl"/>
+                    <FontAwesomeIcon icon={faCircleRight} size="2xl"/>
+                </div>
             </section>
             <div className="hero--buttons">
                 <LinkContainer to="/login" >

@@ -96,6 +96,11 @@ a:visited {
 .hero--desc {
     line-height: 25px;
 }
+.arrows {
+    display: flex;
+    width: 90px;
+    justify-content: space-between;
+}
 /****************************************************************************
     LOGIN/SIGN UP
 *****************************************************************************/
