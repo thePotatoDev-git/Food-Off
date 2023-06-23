@@ -46,7 +46,7 @@ const Header = () => {
 
                 {userInfo ? (
                     <>
-                    <div className="navbar--user">
+                    <div className="navbar--user link-cursor">
                         <h4 onClick={toggleMenu}>{userInfo.username} <FontAwesomeIcon icon={faBurger} size="2xl" /></h4>
                     </div>
                     <ul className={hamburgerState}>
