@@ -6,6 +6,7 @@ import { Container, Card, Button } from 'react-bootstrap';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import heroPages from '../assets/heroPages';
 
 const Hero = () => {
     const navigate = useNavigate();
@@ -19,26 +20,10 @@ const Hero = () => {
     }, [navigate, userInfo]);
 
     // Hero carousel
-    const carouselPages = [
-        {
-            img: "../images/pic01.jpg",
-            desc: 'Having trouble deciding where to eat? Food/Off can help you decide!'
-        },
-        {
-            img: "../images/pic02.jpg",
-            desc: "Eateries face off against each other and the last choice standing is what's for dinner!"
-        },
-        {
-            img: "../images/pic03.jpg",
-            desc: "Add eateries to create your own personal list of your favorite places to eat."
-        },
-    ];
-    
-
     const [page, setPage] = React.useState(0);
 
     function nextPage() {
-        if (page < carouselPages.length - 1) {
+        if (page < heroPages.length - 1) {
             setPage(page + 1);
         }
     }
@@ -48,19 +33,31 @@ const Hero = () => {
             setPage(page - 1);
         }
     }
-    
 
     return (
         <>
             <section className="main">
                 <h1 className="hero--header">Food/Off</h1>
-                <img className="hero--img" src={carouselPages[page].img} alt="" />
+                <img className="hero--img" src={heroPages[page].img} alt="" />
+                <h4>{heroPages[page].header}</h4>
                 <p className="hero--desc">
-                    {carouselPages[page].desc}
+                    {heroPages[page].desc}
                 </p>
                 <div className="arrows">
-                    <FontAwesomeIcon icon={faCircleLeft} size="2xl" onClick={prevPage}/>
-                    <FontAwesomeIcon icon={faCircleRight} size="2xl" onClick={nextPage}/>
+                    <FontAwesomeIcon icon={faCircleLeft} 
+                                        size="2xl" 
+                                        style={{
+                                            color: page === 0 ? "#a7a4ad" : "inherit"
+                                          }}
+                                        onClick={prevPage}
+                    />
+                    <FontAwesomeIcon icon={faCircleRight} 
+                                        size="2xl" 
+                                        style={{
+                                            color: page === heroPages.length - 1 ? "#a7a4ad" : "inherit"
+                                          }}
+                                        onClick={nextPage}
+                    />
                 </div>
             </section>
             <div className="hero--buttons">
