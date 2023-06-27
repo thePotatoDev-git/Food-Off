@@ -12,6 +12,7 @@ import MainScreen from './screens/MainScreen.jsx';
 import LoginScreen from './screens/LoginScreen.jsx';
 import RegisterScreen from './screens/RegisterScreen.jsx';
 import ProfileScreen from './screens/ProfileScreen.jsx';
+import ListsScreen from './screens/ListsScreen.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
       <Route path="" element={<PrivateRoute />}>
         <Route path="/main" element={<MainScreen />} />
         <Route path="/profile" element={<ProfileScreen />} />
+        <Route path="/lists" element={<ListsScreen />} />
       </Route>
     </Route>
   )
