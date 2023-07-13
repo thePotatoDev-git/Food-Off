@@ -1,57 +1,66 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import FormContainer from '../components/FormContainer';
+import { useAddEateryMutation } from '../slices/eateriesApiSlice';
 
 export default function AddEntry(props) {
+    const { userInfo } = useSelector((state) => state.auth);
 
-    const [name, setName] = useState('');
+    const [eateryName, setEateryName] = useState('');
     const [budget, setBudget] = useState('');
     const [location, setLocation] = useState('');
     const [menu, setMenu] = useState('');
+    const [user, setUser] = useState(userInfo._id);
 
+    const [addEatery] = useAddEateryMutation();
+
+    const submitHandler = async (e) => {
+        e.preventDefault();
+
+        try {
+            const res = await addEatery({
+                eateryName,
+                budget,
+                location,
+                menu,
+                user,
+            });
+
+            console.log(res.data);
+            setEateryName('');
+            setBudget('');
+            setLocation('');
+            setMenu('');
+        } catch (err) {
+            console.log(err);
+        }
+
+        // try {
+        //     const res = await addEatery({
+        //         eateryName,
+        //         budget,
+        //         location,
+        //         menu,
+        //         user: userInfo._id,
+        //     });
+        // } catch (err) {
+        //     console.log(err);
+        // }
+    };
 
     return (
         <>
-            {/* <section className="main">
-                <h3>Add Eatery</h3>
-                <section className="entry--form">
-                    <div className="form-field">
-                        <label htmlFor="name">Name:</label>
-                        <input type="text" name="name"/>
-                    </div>
-                    <div className="form-field">
-                        <label htmlFor="budget">Budget:</label>
-                        <input type="text" name="budget"/>
-                    </div>
-                    <div className="form-field">
-                        <label htmlFor="location">Location:</label>
-                        <input type="text" name="location"/>
-                    </div>
-                    <div className="form-field">
-                        <label htmlFor="menu">Menu:</label>
-                        <input type="text" name="menu"/>
-                    </div>
-                    <div className="form-field">
-                        <label htmlFor="imgUpload">Upload photo</label>
-                        <input type="file" />
-                    </div>
-                </section>
-                <div className="buttons">
-                    <button>Submit</button>
-                    <button onClick={() => props.togglePage('entries')}>Cancel</button>
-                </div>
-            </section> */}
-
             <FormContainer>
                 <section className="main">
                     <h3>Add Eatery</h3>
                     <section className="entry--form">
-                        <form>
+                        <form onSubmit={ submitHandler }>
                             <div className="form-field">
                                 <input type="text" 
                                         placeholder="Name"
-                                        value={name}
-                                        onChange={ (e) =>  setName(e.target.value) }
+                                        value={eateryName}
+                                        onChange={ (e) =>  setEateryName(e.target.value) }
                                 />
                             </div>
                             <div className="form-field">
