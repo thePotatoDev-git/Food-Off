@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import FormContainer from '../components/FormContainer';
+import { toast } from 'react-toastify';
 import { useAddEateryMutation } from '../slices/eateriesApiSlice';
 
 export default function AddEntry(props) {
@@ -24,7 +25,7 @@ export default function AddEntry(props) {
     const submitHandler = async (e) => {
         e.preventDefault();
 
-        try {
+        if (eateryName !== '' && budget !== '') {
             // Grabs values entered from form and puts them into addEatery controller method
             const res = await addEatery({
                 eateryName,
@@ -41,8 +42,9 @@ export default function AddEntry(props) {
             setMenu('');
 
             navigate('/lists');
-        } catch (err) {
-            console.log(err);
+            toast.success('Eatery added!');
+        } else {
+            toast.error('Eatery name and budget required.');
         }
     };
 
