@@ -14,9 +14,10 @@ const getEateryLists = asyncHandler(async (req, res) => {
 // @access  Private
 
 const addEatery = asyncHandler(async (req, res) => {
-    const { eateryName, budget, location, menu, user } = req.body;
+    const { eateryName, budget, location, menu, user } = req.body; // Gets req.body values from values in AddEntry react component
 
     try {
+        // Creates an entry in MongoDB with listed values
         const eatery = await Eatery.create({
             eateryName,
             budget,
@@ -30,8 +31,6 @@ const addEatery = asyncHandler(async (req, res) => {
         console.log(err);
     }
     console.log(req.body);
-    // console.log(req.user);
-    res.status(200).json({ message: 'Added eatery' });
 });
 
 // @desc    Delete eatery

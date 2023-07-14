@@ -1,24 +1,31 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import FormContainer from '../components/FormContainer';
 import { useAddEateryMutation } from '../slices/eateriesApiSlice';
 
 export default function AddEntry(props) {
+    const navigate = useNavigate();
+
+    // Puts user info into userInfo variable (id, email, username, etc.)
     const { userInfo } = useSelector((state) => state.auth);
 
+    // Sets default values for Eatery model
     const [eateryName, setEateryName] = useState('');
     const [budget, setBudget] = useState('');
     const [location, setLocation] = useState('');
     const [menu, setMenu] = useState('');
     const [user, setUser] = useState(userInfo._id);
 
+    // Uses Eatery mutation from eateriesApiSlice
     const [addEatery] = useAddEateryMutation();
 
     const submitHandler = async (e) => {
         e.preventDefault();
 
         try {
+            // Grabs values entered from form and puts them into addEatery controller method
             const res = await addEatery({
                 eateryName,
                 budget,
@@ -26,27 +33,17 @@ export default function AddEntry(props) {
                 menu,
                 user,
             });
-
+            // Empties values after submission
             console.log(res.data);
             setEateryName('');
             setBudget('');
             setLocation('');
             setMenu('');
+
+            navigate('/lists');
         } catch (err) {
             console.log(err);
         }
-
-        // try {
-        //     const res = await addEatery({
-        //         eateryName,
-        //         budget,
-        //         location,
-        //         menu,
-        //         user: userInfo._id,
-        //     });
-        // } catch (err) {
-        //     console.log(err);
-        // }
     };
 
     return (
