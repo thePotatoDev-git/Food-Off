@@ -1,4 +1,5 @@
 import asyncHandler from 'express-async-handler';
+import User from '../models/userModel.js';
 import Eatery from '../models/eateryModel.js';
 
 // @desc    Get user eatery list
@@ -6,7 +7,9 @@ import Eatery from '../models/eateryModel.js';
 // @access  Private
 
 const getEateryLists = asyncHandler(async (req, res) => {
-    res.status(200).json({ message: 'Get eatery lists' });
+    const eateries = await Eatery.find({ user: req.user.id }).sort({ eateryName: 1 });
+
+    res.json(eateries);
 });
 
 // @desc    Add eatery

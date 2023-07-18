@@ -41,8 +41,9 @@ export default function AddEntry(props) {
             setLocation('');
             setMenu('');
 
-            navigate('/lists');
             toast.success('Eatery added!');
+            
+            navigate('/lists');
         } else {
             toast.error('Eatery name and budget required.');
         }

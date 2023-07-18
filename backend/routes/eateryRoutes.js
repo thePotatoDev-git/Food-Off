@@ -5,9 +5,10 @@ import {
     addEatery,
     deleteEatery,
 } from '../controllers/eateryController.js';
+import { protect } from '../middleware/authMiddleware.js';
 
 // Routes for controller methods
-router.get('/lists', getEateryLists);
+router.route('/lists').get(protect, getEateryLists);
 router.post('/', addEatery);
 router.delete('/', deleteEatery);
 
