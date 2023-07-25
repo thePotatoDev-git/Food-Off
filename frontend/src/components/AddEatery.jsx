@@ -2,11 +2,12 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import FormContainer from '../components/FormContainer';
+import { LinkContainer } from 'react-router-bootstrap';
+import FormContainer from './FormContainer';
 import { toast } from 'react-toastify';
 import { useAddEateryMutation } from '../slices/eateriesApiSlice';
 
-export default function AddEntry(props) {
+export default function AddEatery(props) {
     const navigate = useNavigate();
 
     // Puts user info into userInfo variable (id, email, username, etc.)
@@ -43,7 +44,7 @@ export default function AddEntry(props) {
 
             toast.success('Eatery added!');
             
-            navigate('/lists');
+            navigate('/eateries');
         } else {
             toast.error('Eatery name and budget required.');
         }
@@ -86,7 +87,9 @@ export default function AddEntry(props) {
                             </div>
                             <div className="buttons">
                                 <button>Submit</button>
-                                <button onClick={() => props.togglePage('entries')}>Cancel</button>
+                                <LinkContainer to="/eateries">
+                                    <button>Cancel</button>
+                                </LinkContainer>
                             </div>
                         </form>
                     </section>

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { LinkContainer } from 'react-router-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faMagnifyingGlass, faPlus, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
 import { useGetEateryListsQuery } from '../slices/eateriesApiSlice';
@@ -38,7 +39,10 @@ export default function Entries(props) {
                 <section className="entries--heading">
                     <h3>All Eateries <FontAwesomeIcon icon={faCaretDown} size="sm" /></h3>
                     <div className="entries--heading-buttons">
-                        <FontAwesomeIcon icon={faPlus} size="xl" onClick={() => props.togglePage('add-entry')}/>
+                        {/* <FontAwesomeIcon icon={faPlus} size="xl" onClick={() => props.togglePage('add-entry')}/> */}
+                        <LinkContainer to="/addEatery">
+                            <FontAwesomeIcon icon={faPlus} size="xl" />
+                        </LinkContainer>
                         <FontAwesomeIcon icon={faMagnifyingGlass} size="lg" onClick={toggleSearchBar}/>
                     </div>
                 </section>

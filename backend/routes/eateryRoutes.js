@@ -8,7 +8,7 @@ import {
 import { protect } from '../middleware/authMiddleware.js';
 
 // Routes for controller methods
-router.route('/lists').get(protect, getEateryLists);
+router.route('/eateries').get(protect, getEateryLists);
 router.post('/', addEatery);
 router.delete('/', deleteEatery);
 

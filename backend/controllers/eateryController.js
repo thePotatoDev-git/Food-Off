@@ -3,7 +3,7 @@ import User from '../models/userModel.js';
 import Eatery from '../models/eateryModel.js';
 
 // @desc    Get user eatery list
-// route    GET /api/eateries/lists
+// route    GET /api/eateries/
 // @access  Private
 
 const getEateryLists = asyncHandler(async (req, res) => {
@@ -13,7 +13,7 @@ const getEateryLists = asyncHandler(async (req, res) => {
 });
 
 // @desc    Add eatery
-// route    POST /api/eateries
+// route    POST /api/eateries/addEatery
 // @access  Private
 
 const addEatery = asyncHandler(async (req, res) => {

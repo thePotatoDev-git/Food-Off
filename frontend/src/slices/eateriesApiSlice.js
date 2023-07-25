@@ -5,7 +5,7 @@ export const eateriesApiSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
         getEateryLists: builder.query({
             query: () => ({
-                url: `${EATERIES_URL}/lists`,
+                url: `${EATERIES_URL}/eateries`,
             }),
             keepUnusedDataFor: 5,
         }),

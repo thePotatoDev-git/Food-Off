@@ -59,7 +59,7 @@ const Header = () => {
                             </LinkContainer>
                         </li>
                         <li className="navbar--item">
-                            <LinkContainer to="/lists">
+                            <LinkContainer to="/eateries">
                                 <span className="link-cursor" onClick={toggleMenu}>Food lists</span>
                             </LinkContainer>
                         </li>
