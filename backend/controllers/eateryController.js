@@ -12,6 +12,21 @@ const getEateryLists = asyncHandler(async (req, res) => {
     res.json(eateries);
 });
 
+// @desc    Get single eatery
+// route    GET /api/eateries/:id
+// @access  Private
+
+const getEateryById = asyncHandler(async (req, res) => {
+    const eatery = await Eatery.findById(req.params.id);
+
+    if (eatery) {
+        return res.json(eatery);
+    } else {
+        res.status(404);
+        throw new Error('Eatery not found');
+    }
+});
+
 // @desc    Add eatery
 // route    POST /api/eateries/addEatery
 // @access  Private
@@ -46,6 +61,7 @@ const deleteEatery = asyncHandler(async (req, res) => {
 
 export {
     getEateryLists,
+    getEateryById,
     addEatery,
     deleteEatery,
 };

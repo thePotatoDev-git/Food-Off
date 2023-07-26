@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faMagnifyingGlass, faPlus, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
@@ -11,6 +12,7 @@ export default function Entries(props) {
     const dispatch = useDispatch();
 
     const { data: eateries } = useGetEateryListsQuery();
+    console.log(eateries)
 
     // useEffect(() => {
     //     const fetchData = async () => {
@@ -52,16 +54,18 @@ export default function Entries(props) {
                 </section>
                 <section className="entries--table">
                     {eateries && eateries.map(eatery => (
-                        <section className="entries--entry" key={eatery._id}>
-                            <div className="entry-img">
-                                <img src={eatery.image} alt="" />
-                            </div>
-                            <div className="entry-info">
-                                <h4>{eatery.eateryName}</h4>
-                                <span>{eatery.budget}</span>
-                                <p>{eatery.location}</p>
-                            </div>
-                        </section>
+                        <Link to={`/eateries/${eatery._id}`} key={eatery._id}>
+                            <section className="entries--entry" >
+                                <div className="entry-img">
+                                    <img src={eatery.image} alt="" />
+                                </div>
+                                <div className="entry-info">
+                                    <h4>{eatery.eateryName}</h4>
+                                    <span>{eatery.budget}</span>
+                                    <p>{eatery.location}</p>
+                                </div>
+                            </section>
+                        </Link>
                     ))}
 
                     {/* <section className="entries--entry">

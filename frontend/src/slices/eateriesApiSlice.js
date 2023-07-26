@@ -9,6 +9,12 @@ export const eateriesApiSlice = apiSlice.injectEndpoints({
             }),
             keepUnusedDataFor: 5,
         }),
+        getEateryById: builder.query({
+            query: (eateryId) => ({
+                url: `${EATERIES_URL}/eateries/${eateryId}`,
+            }),
+            keepUnusedDataFor: 5,
+        }),
         addEatery: builder.mutation({
             query: (data) => ({
                 url: `${EATERIES_URL}`, // URLs used in routes
@@ -21,5 +27,6 @@ export const eateriesApiSlice = apiSlice.injectEndpoints({
 
 export const { 
     useGetEateryListsQuery, 
+    useGetEateryByIdQuery,
     useAddEateryMutation,
 } = eateriesApiSlice;

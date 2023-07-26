@@ -13,6 +13,7 @@ import LoginScreen from './screens/LoginScreen.jsx';
 import RegisterScreen from './screens/RegisterScreen.jsx';
 import ProfileScreen from './screens/ProfileScreen.jsx';
 import EateriesScreen from './screens/EateriesScreen.jsx';
+import EateryScreen from './screens/EateryScreen.jsx';
 import AddEatery from './components/AddEatery';
 
 const router = createBrowserRouter(
@@ -26,6 +27,7 @@ const router = createBrowserRouter(
         <Route path="/main" element={<MainScreen />} />
         <Route path="/profile" element={<ProfileScreen />} />
         <Route path="/eateries" element={<EateriesScreen />} />
+        <Route path="/eateries/:id" element={<EateryScreen />} />
         <Route path="/addEatery" element={<AddEatery />} />
       </Route>
     </Route>
