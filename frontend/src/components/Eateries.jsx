@@ -67,17 +67,6 @@ export default function Entries(props) {
                             </section>
                         </Link>
                     ))}
-
-                    {/* <section className="entries--entry">
-                        <div className="entry-img">
-                            <img src="../images/pic02.jpg" alt="" />
-                        </div>
-                        <div className="entry-info">
-                            <h4>Mama Chicken</h4>
-                            <span>$$</span>
-                            <p>252 Broad Ave. Palisades Park, NJ 07650</p>
-                        </div>
-                    </section> */}
                 </section>
             </section>
         </>

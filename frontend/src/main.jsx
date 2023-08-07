@@ -14,7 +14,8 @@ import RegisterScreen from './screens/RegisterScreen.jsx';
 import ProfileScreen from './screens/ProfileScreen.jsx';
 import EateriesScreen from './screens/EateriesScreen.jsx';
 import EateryScreen from './screens/EateryScreen.jsx';
-import AddEatery from './components/AddEatery';
+import AddEatery from './components/AddEatery.jsx';
+import EateryEditScreen from './screens/EateryEditScreen.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,6 +30,7 @@ const router = createBrowserRouter(
         <Route path="/eateries" element={<EateriesScreen />} />
         <Route path="/eateries/:id" element={<EateryScreen />} />
         <Route path="/addEatery" element={<AddEatery />} />
+        <Route path="/eateries/:id/edit" element={<EateryEditScreen />} />
       </Route>
     </Route>
   )

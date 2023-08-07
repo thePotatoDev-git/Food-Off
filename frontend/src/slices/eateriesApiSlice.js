@@ -22,6 +22,14 @@ export const eateriesApiSlice = apiSlice.injectEndpoints({
                 body: data,
             }),
         }),
+        updateEatery: builder.mutation({
+            query: (data) => ({
+                url: `${EATERIES_URL}/eateries/${data.eateryId}`,
+                method: 'PUT',
+                body: data,
+            }),
+            invalidatesTags: ['Eateries'],
+        }),
     })
 });
 
@@ -29,4 +37,5 @@ export const {
     useGetEateryListsQuery, 
     useGetEateryByIdQuery,
     useAddEateryMutation,
+    useUpdateEateryMutation,
 } = eateriesApiSlice;

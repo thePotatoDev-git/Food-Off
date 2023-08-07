@@ -51,6 +51,29 @@ const addEatery = asyncHandler(async (req, res) => {
     console.log(req.body);
 });
 
+// @desc    Update eatery
+// route    PUT /api/eateries/:id
+// @access  Private
+
+const updateEatery = asyncHandler(async (req, res) => {
+    const { eateryName, budget, location, menu } = req.body;
+
+    const eatery = await Eatery.findById(req.params.id);
+
+    if (eatery) {
+        eatery.eateryName = eateryName;
+        eatery.budget = budget;
+        eatery.location = location;
+        eatery.menu = menu;
+
+        const updatedEatery = await eatery.save();
+        res.json(updatedEatery);
+    } else {
+        res.status(404);
+        throw new Error('Eatery not found');
+    }
+});
+
 // @desc    Delete eatery
 // route    DELETE /api/eateries
 // @access  Private
@@ -63,5 +86,6 @@ export {
     getEateryLists,
     getEateryById,
     addEatery,
+    updateEatery,
     deleteEatery,
 };
