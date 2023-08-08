@@ -78,12 +78,19 @@ export default function EateryEditScreen() {
                                             onChange={ (e) =>  setEateryName(e.target.value) }
                                     />
                                 </div>
-                                <div className="form-field">
+                                {/* <div className="form-field">
                                     <input type="text" 
                                             placeholder="Budget"
                                             value={budget}
                                             onChange={ (e) => setBudget(e.target.value) }
                                     />
+                                </div> */}
+                                <div className="form-field">
+                                    <select value={budget} onChange={ (e) => setBudget(e.target.value) }>
+                                        <option value="$">$</option>
+                                        <option value="$$">$$</option>
+                                        <option value="$$$">$$$</option>
+                                    </select>
                                 </div>
                                 <div className="form-field">
                                     <input type="text" 
