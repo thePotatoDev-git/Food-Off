@@ -11,7 +11,7 @@ import { useUpdateUserMutation } from '../slices/usersApiSlice';
 import React from 'react'
 
 const ProfileScreen = () => {
-    const [name, setUsername] = useState('');
+    const [username, setUsername] = useState('');
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -56,9 +56,53 @@ const ProfileScreen = () => {
 
     return (
         <FormContainer>
-            <h1>Update Profile</h1>
+            <section className="greeting">
+                <h2>Update Profile</h2>
+            </section>
 
-            <Form onSubmit={ submitHandler }>
+            <section className="main">
+
+                <div className="login--info">
+                        <form className="login-field" onSubmit={ submitHandler }>
+                            <input type="text" 
+                                    placeholder="Username"
+                                    value={username}
+                                    onChange={ (e) => setUsername(e.target.value) }
+                            />
+                            <input type="text" 
+                                    placeholder="First name"
+                                    value={firstName}
+                                    onChange={ (e) => setFirstName(e.target.value) }
+                            />
+                            <input type="text" 
+                                    placeholder="Last name"
+                                    value={lastName}
+                                    onChange={ (e) => setLastName(e.target.value) }
+                            />
+                            <input type="email" 
+                                    placeholder="Email" 
+                                    value={email} 
+                                    onChange={ (e) => setEmail(e.target.value) }
+                            />
+                            <input type="password" 
+                                    placeholder="Password"
+                                    value={password}
+                                    onChange={ (e) => setPassword(e.target.value) }
+                            />
+                            <input type="password" 
+                                    placeholder="Confirm Password"
+                                    value={confirmPassword}
+                                    onChange={ (e) => setConfirmPassword(e.target.value) }
+                            />
+                            <input type="submit" className="submit" value="Update"/>
+
+                            {isLoading && <Loader />}
+
+                        </form>
+                    </div>
+                </section>
+
+            {/* <Form onSubmit={ submitHandler }>
             <Form.Group className="my-2" controlId="name">
                     <Form.Label>Name</Form.Label>
                     <Form.Control
@@ -109,7 +153,7 @@ const ProfileScreen = () => {
                     Update
                 </Button>
 
-            </Form>
+            </Form> */}
         </FormContainer>
     )
 }
