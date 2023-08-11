@@ -6,10 +6,14 @@ export default function Winner(props) {
             <section className="main">
                 <h2>Winner!</h2>
                 <section className="winner">
-                    <h3>Winning Restaurant</h3>
+                    <h3>{props.foodOptions[0].eateryName}</h3>
                     <img className="winner--img" src="../images/pic01.jpg" alt="" />
-                    <span className="winner--menu">Menu</span>
-                    <span className="winner--location">Location:</span>
+                    <div className="buttons">
+                            <a href={props.foodOptions[0].menu}>
+                                <button>See Menu</button>
+                            </a>
+                    </div>
+                    <span className="winner--location">{props.foodOptions[0].location}</span>
                     <button className="lrg" onClick={() => props.togglePage('budget-menu')}>Start over?</button>
                 </section>
 

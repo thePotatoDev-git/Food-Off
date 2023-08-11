@@ -54,6 +54,11 @@ const Header = () => {
                             <FontAwesomeIcon icon={faX}  style={{color: "#ffffff",}}/>
                         </div>
                         <li className="navbar--item">
+                            <LinkContainer to="/">
+                               <span className="link-cursor" onClick={toggleMenu}>Home</span>
+                            </LinkContainer>
+                        </li>
+                        <li className="navbar--item">
                             <LinkContainer to="/profile">
                                <span className="link-cursor" onClick={toggleMenu}>Profile</span>
                             </LinkContainer>
