@@ -30,6 +30,13 @@ export const eateriesApiSlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['Eateries'],
         }),
+        deleteEatery: builder.mutation({
+            query: (eateryId) => ({
+                url: `${EATERIES_URL}/${eateryId}`,
+                method: 'DELETE',
+            }),
+            providesTags: ['Eatery'],
+        }),
     })
 });
 
@@ -38,4 +45,5 @@ export const {
     useGetEateryByIdQuery,
     useAddEateryMutation,
     useUpdateEateryMutation,
+    useDeleteEateryMutation,
 } = eateriesApiSlice;

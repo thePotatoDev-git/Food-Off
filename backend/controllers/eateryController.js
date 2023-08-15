@@ -75,11 +75,19 @@ const updateEatery = asyncHandler(async (req, res) => {
 });
 
 // @desc    Delete eatery
-// route    DELETE /api/eateries
+// route    DELETE /api/eateries/:id
 // @access  Private
 
 const deleteEatery = asyncHandler(async (req, res) => {
-    res.status(200).json({ message: 'Eatery deleted' });
+    const eatery = await Eatery.findById(req.params.id);
+
+    if (eatery) {
+        await Eatery.deleteOne({ _id: eatery._id });
+        res.json({ message: 'Eatery deleted' });
+    } else {
+        res.status(404);
+        throw new Error('Eatery not found');
+    }
 });
 
 export {

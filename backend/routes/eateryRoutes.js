@@ -17,6 +17,6 @@ router
     .get(protect, checkObjectId, getEateryById)
     .put(protect, checkObjectId, updateEatery);
 router.post('/', addEatery);
-router.delete('/', deleteEatery);
+router.delete('/:id', protect, deleteEatery);
 
 export default router;

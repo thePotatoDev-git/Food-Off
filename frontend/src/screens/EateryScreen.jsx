@@ -4,11 +4,13 @@ import { faCircleLeft, faPenToSquare, faTrashCan } from '@fortawesome/free-solid
 import Loader from '../components/Loader';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { useGetEateryByIdQuery } from '../slices/eateriesApiSlice';
+import { useGetEateryByIdQuery, useDeleteEateryMutation } from '../slices/eateriesApiSlice';
+import { toast } from 'react-toastify';
 
 export default function EateryScreen() {
     const navigate = useNavigate();
 
+    // Get eatery ID
     const { id: eateryId } = useParams();
     const { 
         data: eatery,
@@ -18,6 +20,20 @@ export default function EateryScreen() {
     function back() {
         navigate('/eateries');
     }
+
+    // Delete eatery handler
+    const [deleteEatery, { isLoading: loadingDelete }] = useDeleteEateryMutation();
+
+    const deleteHandler = async (id) => {
+        if (window.confirm('Are you sure you want to delete this eatery?')) {
+            try {
+                await deleteEatery(id);
+                back();
+            } catch (err) {
+                toast.error(err?.data?.message || err.error);
+            }
+        }
+    };
 
     return (
         <>
@@ -45,6 +61,8 @@ export default function EateryScreen() {
                                 className="icon"
                                 icon={faTrashCan}
                                 size="xl"
+                                variant='danger'
+                                onClick={() => deleteHandler(eatery._id)}
                             />
                         </div>
                     </div>
