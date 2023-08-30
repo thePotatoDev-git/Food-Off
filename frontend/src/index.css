@@ -243,6 +243,7 @@ button:active {
 }
 .winner--img {
     border-radius: 10px;
+    width: 250px;
 }
 .winner--menu,
 .winner-location {

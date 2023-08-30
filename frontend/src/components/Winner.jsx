@@ -7,7 +7,7 @@ export default function Winner(props) {
                 <h2>Winner!</h2>
                 <section className="winner">
                     <h3>{props.foodOptions[0].eateryName}</h3>
-                    <img className="winner--img" src="../images/pic01.jpg" alt="" />
+                    <img className="winner--img" src="../images/stock-plate.jpg" alt="" />
                     <div className="buttons">
                             <a href={props.foodOptions[0].menu}>
                                 <button>See Menu</button>

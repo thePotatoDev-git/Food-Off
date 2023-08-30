@@ -57,7 +57,7 @@ export default function Entries(props) {
                         <Link to={`/eateries/${eatery._id}`} key={eatery._id}>
                             <section className="entries--entry" >
                                 <div className="entry-img">
-                                    <img src={eatery.image} alt="" />
+                                    <img src="../images/stock-plate.jpg" alt="" />
                                 </div>
                                 <div className="entry-info">
                                     <h4>{eatery.eateryName}</h4>
