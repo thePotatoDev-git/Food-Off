@@ -214,7 +214,8 @@ a:visited {
 .lrg {
     width: 200px;
 }
-button:active {
+button:active,
+.option:active {
     background: linear-gradient(90deg, rgb(241, 149, 56) 1.18%, rgb(230, 138, 47) 100%);
 }
 /****************************************************************************
