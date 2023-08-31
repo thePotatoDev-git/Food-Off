@@ -8,19 +8,22 @@ export default function ChooseBudget(props) {
                 <h3>Choose your budget:</h3>
                 <div className="buttons">
                     <button onClick={() => {
-                        props.togglePage('food-off');
                         props.lowBudgetSelected();
+                        props.togglePage('food-off');
                     }}>$</button>
                     <button onClick={() => {
-                        props.togglePage('food-off')
                         props.midBudgetSelected();
+                        props.togglePage('food-off')
                     }}>$$</button>
                     <button onClick={() => {
-                        props.togglePage('food-off')
                         props.highBudgetSelected();
+                        props.togglePage('food-off')
                     }}>$$$</button>
                 </div>
-                    <button className="lrg">I'm feeling lucky!</button>
+                    <button className="lrg" onClick={() => {
+                        props.feelingLucky();
+                        // props.togglePage('winner');
+                    }}>I'm feeling lucky!</button>
             </section>
         </>
     )

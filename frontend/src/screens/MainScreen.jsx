@@ -5,6 +5,7 @@ import ChooseBudget from '../components/ChooseBudget.jsx';
 import FoodOff from '../components/FoodOff.jsx';
 import Winner from '../components/Winner.jsx';
 import { useGetEateryListsQuery } from '../slices/eateriesApiSlice';
+import { toast } from 'react-toastify';
 
 export default function MainScreen() {
     const { userInfo } = useSelector((state) => state.auth);
@@ -40,23 +41,32 @@ export default function MainScreen() {
     const midBudgetOptions = eateries?.filter(eatery => eatery.budget === '$$')
 
     const highBudgetOptions = eateries?.filter(eatery => eatery.budget === '$$$')
+
+    const allOptions = eateries;
         
     const [foodOptions, setFoodOptions] = useState([]);
 
     const lowBudgetSelected = () => {
         setFoodOptions(lowBudgetOptions.sort(() => Math.random() - 0.5));
         console.log(foodOptions);
-    }
+    };
 
     const midBudgetSelected = () => {
         setFoodOptions(midBudgetOptions.sort(() => Math.random() - 0.5));
         console.log(foodOptions);
-    }
+    };
 
     const highBudgetSelected = () => {
         setFoodOptions(highBudgetOptions.sort(() => Math.random() - 0.5));
         console.log(foodOptions);
-    }
+    };
+
+    const feelingLuckySelected = () => {
+        const random = Math.floor(Math.random() * eateries.length);
+        setFoodOptions([eateries[random]]);
+        togglePage('winner');
+        console.log(foodOptions);
+    };
 
     const chooseOptionOne = () => {
         const newFoodOptions = [...foodOptions];
@@ -89,6 +99,7 @@ export default function MainScreen() {
                             lowBudgetSelected={lowBudgetSelected} 
                             midBudgetSelected={midBudgetSelected}
                             highBudgetSelected={highBudgetSelected}
+                            feelingLucky={feelingLuckySelected}
                 />;
      } else if (currentPage === 'food-off') {
         page = <FoodOff togglePage={togglePage} 
