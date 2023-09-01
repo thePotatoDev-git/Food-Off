@@ -19,7 +19,7 @@ export default function FoodOff(props) {
                         </section>
                     ) : (
                         <section className="food-off">
-                            <p>No eateries in this budget range!</p>
+                            <p>Not enough eateries in this budget range!</p>
                         </section>
                     )
                 }

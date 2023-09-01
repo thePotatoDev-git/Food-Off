@@ -5,7 +5,6 @@ import ChooseBudget from '../components/ChooseBudget.jsx';
 import FoodOff from '../components/FoodOff.jsx';
 import Winner from '../components/Winner.jsx';
 import { useGetEateryListsQuery } from '../slices/eateriesApiSlice';
-import { toast } from 'react-toastify';
 
 export default function MainScreen() {
     const { userInfo } = useSelector((state) => state.auth);
@@ -41,8 +40,6 @@ export default function MainScreen() {
     const midBudgetOptions = eateries?.filter(eatery => eatery.budget === '$$')
 
     const highBudgetOptions = eateries?.filter(eatery => eatery.budget === '$$$')
-
-    const allOptions = eateries;
         
     const [foodOptions, setFoodOptions] = useState([]);
 
