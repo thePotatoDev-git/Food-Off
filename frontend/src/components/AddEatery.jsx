@@ -6,6 +6,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import FormContainer from './FormContainer';
 import { toast } from 'react-toastify';
 import { useAddEateryMutation } from '../slices/eateriesApiSlice';
+import Axios from 'axios';
 
 export default function AddEatery(props) {
     const navigate = useNavigate();
@@ -19,28 +20,59 @@ export default function AddEatery(props) {
     const [location, setLocation] = useState('');
     const [menu, setMenu] = useState('');
     const [user, setUser] = useState(userInfo._id);
+    const [imageId, setImageId] = useState('');
 
     // Uses Eatery mutation from eateriesApiSlice
     const [addEatery] = useAddEateryMutation();
+
+    // Upload image function
+    const [imageSelected, setImageSelected] = useState(null);
+
+    const uploadImage = async () => {
+        if (imageSelected) {
+            const formData = new FormData();
+            formData.append('file', imageSelected);
+            formData.append('upload_preset', 'l8ry4ext');
+    
+            try {
+                await Axios.post('https://api.cloudinary.com/v1_1/ddqhznahc/image/upload', formData)
+                            .then((response) => {
+                                console.log(response);
+                                setImageId(response.data.public_id);
+                                console.log(imageId);
+                            });
+
+            } catch (error) {
+                console.error(error);
+            }
+    
+            console.log(imageSelected);
+        };
+    };
 
     const submitHandler = async (e) => {
         e.preventDefault();
 
         if (eateryName !== '' && budget !== '') {
             // Grabs values entered from form and puts them into addEatery controller method
+            await uploadImage();
+
             const res = await addEatery({
                 eateryName,
                 budget,
                 location,
                 menu,
                 user,
+                imageId,
             });
+            
             // Empties values after submission
             console.log(res.data);
             setEateryName('');
             setBudget('');
             setLocation('');
             setMenu('');
+            setImageId('');
 
             toast.success('Eatery added!');
             
@@ -64,13 +96,6 @@ export default function AddEatery(props) {
                                         onChange={ (e) =>  setEateryName(e.target.value) }
                                 />
                             </div>
-                            {/* <div className="form-field">
-                                <input type="text" 
-                                        placeholder="Budget"
-                                        value={budget}
-                                        onChange={ (e) => setBudget(e.target.value) }
-                                />
-                            </div> */}
                             <div className="form-field">
                                 <select value={budget} onChange={ (e) => setBudget(e.target.value) }>
                                     <option value="" disabled>
@@ -93,6 +118,12 @@ export default function AddEatery(props) {
                                         placeholder="Menu"
                                         value={menu}
                                         onChange={ (e) => setMenu(e.target.value) }
+                                />
+                            </div>
+                            <div className="form-field">
+                                <span>Upload photo</span>
+                                <input type="file" 
+                                        onChange={ (e) => setImageSelected(e.target.files[0]) }
                                 />
                             </div>
                             <div className="buttons">
