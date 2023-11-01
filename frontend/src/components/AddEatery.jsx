@@ -19,8 +19,8 @@ export default function AddEatery(props) {
     const [budget, setBudget] = useState('');
     const [location, setLocation] = useState('');
     const [menu, setMenu] = useState('');
-    const [user, setUser] = useState(userInfo._id);
-    let [imageId, setImageId] = useState('');
+    const user = userInfo._id;
+    let imageId = '';
 
     // Uses Eatery mutation from eateriesApiSlice
     const [addEatery] = useAddEateryMutation();
@@ -39,7 +39,6 @@ export default function AddEatery(props) {
                             .then((response) => {
                                 console.log(response);
                                 imageId = response.data.public_id;
-                                console.log(imageId);
                             });
 
             } catch (error) {
@@ -72,7 +71,6 @@ export default function AddEatery(props) {
             setBudget('');
             setLocation('');
             setMenu('');
-            setImageId('');
 
             toast.success('Eatery added!');
             
