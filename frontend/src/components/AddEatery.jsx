@@ -20,7 +20,7 @@ export default function AddEatery(props) {
     const [location, setLocation] = useState('');
     const [menu, setMenu] = useState('');
     const [user, setUser] = useState(userInfo._id);
-    const [imageId, setImageId] = useState('');
+    let [imageId, setImageId] = useState('');
 
     // Uses Eatery mutation from eateriesApiSlice
     const [addEatery] = useAddEateryMutation();
@@ -38,14 +38,14 @@ export default function AddEatery(props) {
                 await Axios.post('https://api.cloudinary.com/v1_1/ddqhznahc/image/upload', formData)
                             .then((response) => {
                                 console.log(response);
-                                setImageId(response.data.public_id);
+                                imageId = response.data.public_id;
                                 console.log(imageId);
                             });
 
             } catch (error) {
                 console.error(error);
             }
-    
+            
             console.log(imageSelected);
         };
     };
