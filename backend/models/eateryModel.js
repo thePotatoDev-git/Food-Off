@@ -21,6 +21,10 @@ const eaterySchema = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
     },
+    imageId: {
+        type: String,
+        required: false,
+    },
     createdAt: {
         type: Date,
         default: Date.now,

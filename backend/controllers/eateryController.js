@@ -32,7 +32,7 @@ const getEateryById = asyncHandler(async (req, res) => {
 // @access  Private
 
 const addEatery = asyncHandler(async (req, res) => {
-    const { eateryName, budget, location, menu, user } = req.body; // Gets req.body values from values in AddEntry react component
+    const { eateryName, budget, location, menu, user, imageId } = req.body; // Gets req.body values from values in AddEntry react component
 
     try {
         // Creates an entry in MongoDB with listed values
@@ -42,6 +42,7 @@ const addEatery = asyncHandler(async (req, res) => {
             location,
             menu,
             user,
+            imageId,
         });
         console.log('Added eatery');
         res.json(eatery);
