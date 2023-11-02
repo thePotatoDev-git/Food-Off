@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretDown, faMagnifyingGlass, faPlus, faCircleXmark } from '@fortawesome/free-solid-svg-icons';
+import { Image } from 'cloudinary-react';
 import { useGetEateryListsQuery } from '../slices/eateriesApiSlice';
 
 export default function Entries(props) {
@@ -56,8 +57,15 @@ export default function Entries(props) {
                     {eateries && eateries.map(eatery => (
                         <Link to={`/eateries/${eatery._id}`} key={eatery._id}>
                             <section className="entries--entry" >
-                                <div className="entry-img">
-                                    <img src="../images/stock-plate.jpg" alt="" />
+                                <div className="entry-thumb">
+                                {
+                                    eatery.imageId ? (
+                                        <Image cloudName="ddqhznahc" publicId={eatery.imageId} />
+                                    ) : (
+                                        <img src="../images/stock-plate.jpg" alt="Stock plate graphic" />
+                                    )
+                                }
+
                                 </div>
                                 <div className="entry-info">
                                     <h4>{eatery.eateryName}</h4>

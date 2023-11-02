@@ -7,13 +7,13 @@ export const eateriesApiSlice = apiSlice.injectEndpoints({
             query: () => ({
                 url: `${EATERIES_URL}/eateries`,
             }),
-            keepUnusedDataFor: 5,
+            keepUnusedDataFor: 1,
         }),
         getEateryById: builder.query({
             query: (eateryId) => ({
                 url: `${EATERIES_URL}/eateries/${eateryId}`,
             }),
-            keepUnusedDataFor: 5,
+            keepUnusedDataFor: 1,
         }),
         addEatery: builder.mutation({
             query: (data) => ({
