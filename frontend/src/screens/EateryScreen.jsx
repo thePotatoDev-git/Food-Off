@@ -4,6 +4,7 @@ import { faCircleLeft, faPenToSquare, faTrashCan } from '@fortawesome/free-solid
 import Loader from '../components/Loader';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Image } from 'cloudinary-react';
 import { useGetEateryByIdQuery, useDeleteEateryMutation } from '../slices/eateriesApiSlice';
 import { toast } from 'react-toastify';
 
@@ -68,7 +69,15 @@ export default function EateryScreen() {
                     </div>
 
                     <h3 className="eatery-name">{eatery.eateryName}</h3>
-                    <img src="../../images/pic01.jpg" alt="" />
+                    <div className="eatery-img">
+                    {
+                        eatery.imageId ? (
+                            <Image cloudName="ddqhznahc" publicId={eatery.imageId} />
+                        ) : (
+                            <img src="../images/stock-plate.jpg" alt="Stock plate graphic" />
+                        )
+                    }
+                    </div>
                     <section className="eatery-info">
                         <span>{eatery.budget}</span>
                         <p>{eatery.location}</p>
