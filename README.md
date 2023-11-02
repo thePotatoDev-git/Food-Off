@@ -1,4 +1,4 @@
-# Food-Off
+# Food-Off *(In development)*
 
 A full stack MERN app to help you decide what to eat! Users can create their own personal database of eateries. A budget is chosen, and two eateries are pit against each other. Choose which eatery you'd rather eat at until a final winner is chosen. 
 
