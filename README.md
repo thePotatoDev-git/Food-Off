@@ -1,5 +1,11 @@
 # Food-Off *(In development)*
 
+Link to project: https://food-off.onrender.com/ (May take some time to load) <br>
+
+**Demo user** <br>
+User: test1@email.com <br>
+Password: test1 <br>
+
 A full stack MERN app to help you decide what to eat! Users can create their own personal database of eateries. A budget is chosen, and two eateries are pit against each other. Choose which eatery you'd rather eat at until a final winner is chosen. 
 
 ## How It's Made:
