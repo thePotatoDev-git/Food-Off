@@ -229,8 +229,8 @@ button:active,
 }
 .option {
     border: 1px solid black;
-    height: 100px;
-    width: 150px;
+    height: 250px;
+    width: 250px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -242,13 +242,16 @@ button:active,
 .winner {
     height: auto;
 }
+.winner h3 {
+    font-size: 36px;
+}
 .winner--img {
     border-radius: 10px;
     width: 250px;
 }
 .winner--menu,
-.winner-location {
-    padding: 15px;
+.winner--location {
+    padding-top: 15px;
 }
 /****************************************************************************
     EATERY ENTRIES

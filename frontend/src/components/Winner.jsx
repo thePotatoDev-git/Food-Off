@@ -17,12 +17,15 @@ export default function Winner(props) {
                         )
                     }
                     </div>
+                    <div className="winner--location">
+                    <span>{props.foodOptions[0].location}</span>
+                    </div>
                     <div className="buttons">
                             <a href={props.foodOptions[0].menu}>
                                 <button>See Menu</button>
                             </a>
                     </div>
-                    <span className="winner--location">{props.foodOptions[0].location}</span>
+                    
                     <button className="lrg" onClick={() => props.togglePage('budget-menu')}>Start over?</button>
                 </section>
 
