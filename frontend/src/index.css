@@ -244,6 +244,7 @@ button:active,
 }
 .winner h3 {
     font-size: 36px;
+    text-align: center;
 }
 .winner--img {
     border-radius: 10px;
